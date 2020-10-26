@@ -121,7 +121,7 @@ function azrcrv_gff_set_default_options($networkwide){
 	$option_name = 'azrcrv-gff';
 	
 	$new_options = array(
-						'default-path' => '',
+						'default-folder' => '',
 						'updated' => strtotime('2020-10-26'),
 			);
 	
@@ -306,9 +306,9 @@ function azrcrv_gff_display_options(){
 						<p>An example of the shortcode is <strong>[gallery-from-folder alt_id="sample-gallery"]</strong></p>', 'gallery-from-folder'); ?>
 					</td></tr>
 					
-					<tr><th scope="row"><label for="default-path"><?php esc_html_e('Default Path', 'gallery-from-folder'); ?></label></th><td>
-						<input name="default-path" type="text" id="default-path" value="<?php if (strlen($options['default-path']) > 0){ echo stripslashes($options['default-path']); } ?>" class="regular-text" />
-						<p class="description" id="default-path-description">S<?php esc_html_e('pecify the folder which contains the image galleries.', 'gallery-from-folder'); ?></p></td>
+					<tr><th scope="row"><label for="default-folder"><?php esc_html_e('Default Folder', 'gallery-from-folder'); ?></label></th><td>
+						<input name="default-folder" type="text" id="default-folder" value="<?php if (strlen($options['default-folder']) > 0){ echo stripslashes($options['default-folder']); } ?>" class="regular-text" />
+						<p class="description" id="default-folder-description"><?php esc_html_e('Specify the folder which contains the image galleries (such as wp-content/galleries).', 'gallery-from-folder'); ?></p></td>
 					</td></tr>
 				
 				</table>
@@ -336,7 +336,7 @@ function azrcrv_gff_save_options(){
 		// Retrieve original plugin options array
 		$options = get_option('azrcrv-gff');
 		
-		$option_name = 'default-path';
+		$option_name = 'default-folder';
 		if (isset($_POST[$option_name])){
 			$options[$option_name] = sanitize_text_field($_POST[$option_name]);
 		}
@@ -376,11 +376,11 @@ function azrcrv_gff_shortcode($atts, $content = null){
 	if (strlen($folder_name) > 0){
 		$options = get_option('azrcrv-gff');
 		
-		$thumbnail_dir = $options['default-path'].'/'.$folder_name.'/thumbnails/';
+		$thumbnail_dir = $options['default-folder'].'/'.$folder_name.'/thumbnails/';
 		$thumbnail_path = ABSPATH.$thumbnail_dir;
 		$thumbnail_url = trailingslashit(get_site_url()).$thumbnail_dir;
 		
-		$image_dir = $options['default-path'].'/'.$folder_name.'/';
+		$image_dir = $options['default-folder'].'/'.$folder_name.'/';
 		$image_path = ABSPATH.$image_dir;
 		$image_url = trailingslashit(get_site_url()).$image_dir;
 		
