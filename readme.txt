@@ -1,9 +1,9 @@
 === Gallery From Folder ===
 
-Description:	Gallery From Folder.
+Description:	Loads a gallery of thumbnails from a folder; full-size images are linked from thumbnail.
 Version:		1.0.0
-Tags:			lightbox
-Author:			coppr
+Tags:			gallery
+Author:			azurecurve
 Author URI:		https://development.azurecurve.co.uk/
 Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/gallery-from-folder/
 Download link:	https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/download/v1.0.0/azrcrv-gallery-from-folder.zip
@@ -16,12 +16,17 @@ Domain Path:	/languages
 License: 		GPLv2 or later
 License URI: 	http://www.gnu.org/licenses/gpl-2.0.html
 
-Loas gallery of thumbnails from folder; full-size images linked from thumbnail.
+Loads a gallery of thumbnails from a folder; full-size images are linked from thumbnail.
 
 == Description ==
 
 # Description
-Load gallery from folder.
+
+Gallery From Folder is a simple plugin which will read a folder and display a gallery of all thumbnails with links to the original full-size image.
+
+The [gallery-from-folder] shortcode can be provided with either an alt_id parameter referning a specific name, or a post_id for a ClassicPress post.
+
+An example of the shortcode is [gallery-from-folder alt_id="sample-gallery"]
 
 == Installation ==
 
