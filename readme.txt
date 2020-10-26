@@ -2,7 +2,7 @@
 
 Description:	Loads a gallery of thumbnails from a folder; full-size images are linked from thumbnail.
 Version:		1.0.0
-Tags:			gallery
+Tags:			gallery,images
 Author:			azurecurve
 Author URI:		https://development.azurecurve.co.uk/
 Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/gallery-from-folder/
