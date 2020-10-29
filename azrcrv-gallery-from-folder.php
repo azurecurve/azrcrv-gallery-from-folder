@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Gallery From Folder
  * Description: Gallery for all images in folder.
- * Version: 1.0.0
+ * Version: 2.0.0
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/azrcrv-gallery-from-folder/
@@ -36,14 +36,13 @@ require_once(dirname(__FILE__).'/libraries/updateclient/UpdateClient.class.php')
  *
  */
 // add actions
-add_action('admin_init', 'azrcrv_gff_set_default_options');
 add_action('admin_menu', 'azrcrv_gff_create_admin_menu');
 add_action('admin_post_azrcrv_gff_save_options', 'azrcrv_gff_save_options');
-add_action('the_posts', 'azrcrv_gff_check_for_shortcode');
 add_action('plugins_loaded', 'azrcrv_gff_load_languages');
 
 // add filters
 add_filter('plugin_action_links', 'azrcrv_gff_add_plugin_action_link', 10, 2);
+add_filter('the_posts', 'azrcrv_gff_check_for_shortcode', 10, 2);
 add_filter('codepotent_update_manager_image_path', 'azrcrv_gff_custom_image_path');
 add_filter('codepotent_update_manager_image_url', 'azrcrv_gff_custom_image_url');
 
@@ -111,98 +110,28 @@ function azrcrv_gff_load_css(){
 }
 
 /**
- * Set default options for plugin.
+ * Get options including defaults.
  *
- * @since 1.0.0
- *
- */
-function azrcrv_gff_set_default_options($networkwide){
-	
-	$option_name = 'azrcrv-gff';
-	
-	$new_options = array(
-						'default-folder' => '',
-						'updated' => strtotime('2020-10-26'),
-			);
-	
-	// set defaults for multi-site
-	if (function_exists('is_multisite') && is_multisite()){
-		// check if it is a network activation - if so, run the activation function for each blog id
-		if ($networkwide){
-			global $wpdb;
-
-			$blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-			$original_blog_id = get_current_blog_id();
-
-			foreach ($blog_ids as $blog_id){
-				switch_to_blog($blog_id);
-				
-				azrcrv_gff_update_options($option_name, $new_options, false);
-			}
-
-			switch_to_blog($original_blog_id);
-		}else{
-			azrcrv_gff_update_options( $option_name, $new_options, false);
-		}
-		if (get_site_option($option_name) === false){
-			azrcrv_gff_update_options($option_name, $new_options, true);
-		}
-	}
-	//set defaults for single site
-	else{
-		azrcrv_gff_update_options($option_name, $new_options, false);
-	}
-}
-
-/**
- * Update options.
- *
- * @since 1.0.0
+ * @since 2.0.0
  *
  */
-function azrcrv_gff_update_options($option_name, $new_options, $is_network_site){
-	if ($is_network_site == true){
-		if (get_site_option($option_name) === false){
-			add_site_option($option_name, $new_options);
-		}else{
-			$options = get_site_option($option_name);
-			if (!isset($options['updated']) OR $options['updated'] < $new_options['updated'] ){
-				$options['updated'] = $new_options['updated'];
-				update_site_option($option_name, azrcrv_gff_update_default_options($options, $new_options));
-			}
-		}
-	}else{
-		if (get_option($option_name) === false){
-			add_option($option_name, $new_options);
-		}else{
-			$options = get_option($option_name);
-			if (!isset($options['updated']) OR $options['updated'] < $new_options['updated'] ){
-				$options['updated'] = $new_options['updated'];
-				update_option($option_name, azrcrv_gff_update_default_options($options, $new_options));
-			}
-		}
-	}
-}
+function azrcrv_gff_get_option($option_name){
+	
+	$upload_dir = wp_upload_dir();
+ 
+	$defaults = array(
+						'base-gallery-url' => trailingslashit($upload_dir['baseurl']),
+						'base-gallery-folder' => trailingslashit($upload_dir['basedir']),
+						'thumbnail-folder' => 'thumbnails',
+					);
 
-/**
- * Add default options to existing options.
- *
- * @since 1.0.0
- *
- */
-function azrcrv_gff_update_default_options( &$default_options, $current_options ) {
-    $default_options = (array) $default_options;
-    $current_options = (array) $current_options;
-    $updated_options = $current_options;
-    foreach ($default_options as $key => &$value) {
-        if (is_array( $value) && isset( $updated_options[$key])){
-            $updated_options[$key] = azrcrv_gff_update_default_options($value, $updated_options[$key]);
-        } else {
-			$updated_options[$key] = $value;
-        }
-    }
-    return $updated_options;
-}
+	$options = get_option($option_name, $defaults);
+
+	$options = wp_parse_args($options, $defaults);
+
+	return $options;
+
+ }
 
 /**
  * Add gallery from folder action link on plugins page.
@@ -218,7 +147,7 @@ function azrcrv_gff_add_plugin_action_link($links, $file){
 	}
 
 	if ($file == $this_plugin){
-		$settings_link = '<a href="'.get_bloginfo('wpurl').'/wp-admin/admin.php?page=azrcrv-gff"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'gallery-from-folder').'</a>';
+		$settings_link = '<a href="'.admin_url('admin.php?page=azrcrv-gff').'"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'gallery-from-folder').'</a>';
 		array_unshift($links, $settings_link);
 	}
 
@@ -280,7 +209,7 @@ function azrcrv_gff_display_options(){
     }
 	
 	// Retrieve plugin configuration options from database
-	$options = get_option('azrcrv-gff');
+	$options = azrcrv_gff_get_option('azrcrv-gff');
 	?>
 	<div id="azrcrv-n-general" class="wrap">
 		<fieldset>
@@ -301,14 +230,30 @@ function azrcrv_gff_display_options(){
 					<tr><td colspan="2">
 						<?php _e('<p>Gallery From Folder is a simple plugin which will read a folder and display a gallery of all thumbnails with links to the original full-size image.</p>
 						
-						<p>The <strong>[gallery-from-folder]</strong> shortcode can be provided with either an <strong>alt_id</strong> parameter referning a specific name, or a <strong>post_id</strong> for a ClassicPress post.</p>
+						<p>The <strong>[gallery-from-folder]</strong> shortcode can be provided with either an <strong>slug</strong> parameter referencing a specific folder name, or a <strong>post_id</strong> for a ClassicPress post.</p>
 						
-						<p>An example of the shortcode is <strong>[gallery-from-folder alt_id="sample-gallery"]</strong></p>', 'gallery-from-folder'); ?>
+						<p>Example of the shortcode are:
+							<ul>
+								<li><strong>[gallery-from-folder post_id="1013"]</strong> would, using the default options, produce a URL of <strong>https://your-site.com/wp-content/1013/</strong> and a thumbnail path of <strong>https://your-site.com/wp-content/1013/thumbnails</strong></li>
+								<li><strong>[gallery-from-folder slug="sample-gallery"] would, using the default options, produce a URL of <strong>https://your-site.com/wp-content/sample-gallery/</strong> and a thumbnail path of <strong>https://your-site.com/wp-content/sample-gallery/thumbnails</strong></li>
+							</ul>
+						</p>'
+						, 'gallery-from-folder'); ?>
 					</td></tr>
 					
-					<tr><th scope="row"><label for="default-folder"><?php esc_html_e('Default Folder', 'gallery-from-folder'); ?></label></th><td>
-						<input name="default-folder" type="text" id="default-folder" value="<?php if (strlen($options['default-folder']) > 0){ echo stripslashes($options['default-folder']); } ?>" class="regular-text" />
-						<p class="description" id="default-folder-description"><?php esc_html_e('Specify the folder which contains the image galleries (such as wp-content/galleries).', 'gallery-from-folder'); ?></p></td>
+					<tr><th scope="row"><label for="base-gallery-url"><?php esc_html_e('Base Gallery URL', 'gallery-from-folder'); ?></label></th><td>
+						<input name="base-gallery-url" type="text" id="base-gallery-url" value="<?php if (strlen($options['base-gallery-url']) > 0){ echo stripslashes($options['base-gallery-url']); } ?>" class="large-text" />
+						<p class="description" id="default-folder-description"><?php esc_html_e('Specify the base gallery url which contains the image galleries (such as https://your-site.com/wp-content/galleries/).', 'gallery-from-folder'); ?></p></td>
+					</td></tr>
+					
+					<tr><th scope="row"><label for="base-gallery-folder"><?php esc_html_e('Base Gallery Folder', 'gallery-from-folder'); ?></label></th><td>
+						<input name="base-gallery-folder" type="text" id="base-gallery-folder" value="<?php if (strlen($options['base-gallery-folder']) > 0){ echo stripslashes($options['base-gallery-folder']); } ?>" class="large-text" />
+						<p class="description" id="default-folder-description"><?php esc_html_e('Specify the base gallery folder which contains the image galleries (such as https://your-site.com/wp-content/galleries/).', 'gallery-from-folder'); ?></p></td>
+					</td></tr>
+					
+					<tr><th scope="row"><label for="thumbnail-folder"><?php esc_html_e('Thumbnail Folder', 'gallery-from-folder'); ?></label></th><td>
+						<input name="thumbnail-folder" type="text" id="thumbnail-folder" value="<?php if (strlen($options['thumbnail-folder']) > 0){ echo stripslashes($options['thumbnail-folder']); } ?>" class="regular-text" />
+						<p class="description" id="default-folder-description"><?php esc_html_e('Specify the name of the folder within each gallery folder which contains the thumbnails.', 'gallery-from-folder'); ?></p></td>
 					</td></tr>
 				
 				</table>
@@ -336,9 +281,19 @@ function azrcrv_gff_save_options(){
 		// Retrieve original plugin options array
 		$options = get_option('azrcrv-gff');
 		
-		$option_name = 'default-folder';
+		$option_name = 'base-gallery-url';
 		if (isset($_POST[$option_name])){
-			$options[$option_name] = sanitize_text_field($_POST[$option_name]);
+			$options[$option_name] = wp_strip_all_tags($_POST[$option_name]);
+		}
+		
+		$option_name = 'base-gallery-folder';
+		if (isset($_POST[$option_name])){
+			$options[$option_name] = sanitize_url($_POST[$option_name]);
+		}
+		
+		$option_name = 'thumbnail-folder';
+		if (isset($_POST[$option_name])){
+			$options[$option_name] = sanitize_file_name($_POST[$option_name]);
 		}
 		
 		// Store updated options array to database
@@ -359,30 +314,28 @@ function azrcrv_gff_save_options(){
 function azrcrv_gff_shortcode($atts, $content = null){
 	$args = shortcode_atts(array(
 		'post_id' => 0,
-		'alt_id' => 0,
+		'slug' => '',
 	), $atts);
 	$post_id = $args['post_id'];
-	$alt_id = $args['alt_id'];
+	$slug = $args['slug'];
 	
 	$gallery = '';
 	
-	if (strlen($alt_id) > 0){
-		$folder_name = $alt_id;
+	if (strlen($slug) > 0){
+		$folder_name = $slug;
 	}else{
-		$post = get_post($post_id);
-		$folder_name = $post->post_name;
+		$folder_name = $post_id;
 	}
 	
 	if (strlen($folder_name) > 0){
-		$options = get_option('azrcrv-gff');
+		$options = azrcrv_gff_get_option('azrcrv-gff');
 		
-		$thumbnail_dir = $options['default-folder'].'/'.$folder_name.'/thumbnails/';
-		$thumbnail_path = ABSPATH.$thumbnail_dir;
-		$thumbnail_url = trailingslashit(get_site_url()).$thumbnail_dir;
+		$thumbnail_dir = $options['thumbnail-folder'];
+		$thumbnail_path = trailingslashit($options['base-gallery-folder']).trailingslashit($folder_name).trailingslashit($thumbnail_dir);
+		$thumbnail_url = trailingslashit($options['base-gallery-url']).trailingslashit($folder_name).trailingslashit($thumbnail_dir);
 		
-		$image_dir = $options['default-folder'].'/'.$folder_name.'/';
-		$image_path = ABSPATH.$image_dir;
-		$image_url = trailingslashit(get_site_url()).$image_dir;
+		$image_path = trailingslashit($options['base-gallery-folder']).trailingslashit($folder_name);
+		$image_url = trailingslashit($options['base-gallery-url']).trailingslashit($folder_name);
 		
 		$image_count = 0;
 		$thumbnails = array();
