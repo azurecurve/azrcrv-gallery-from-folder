@@ -1,12 +1,12 @@
 === Gallery From Folder ===
 
 Description:	Loads a gallery of thumbnails from a folder; full-size images are linked from thumbnail.
-Version:		2.0.0
+Version:		2.1.0
 Tags:			gallery,images
 Author:			azurecurve
 Author URI:		https://development.azurecurve.co.uk/
 Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/gallery-from-folder/
-Download link:	https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/download/v2.0.0/azrcrv-gallery-from-folder.zip
+Download link:	https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/download/v2.1.0/azrcrv-gallery-from-folder.zip
 Donate link:	https://development.azurecurve.co.uk/support-development/
 Requires PHP:	5.6
 Requires:		1.0.0
@@ -50,6 +50,11 @@ This plugin is developed for ClassicPress, but will likely work on WordPress.
 == Changelog ==
 
 # Changelog
+
+### [Version 2.1.0](https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/tag/v2.1.0)
+ * Add uninstall.
+ * Update translations to escape strings.
+ * Update azurecurve menu and logo.
 
 ### [Version 2.0.0](https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/tag/v2.0.0)
  * Fix plugin action link to use admin_url() function.

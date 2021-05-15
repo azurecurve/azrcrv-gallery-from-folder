@@ -3,7 +3,7 @@
  * ------------------------------------------------------------------------------
  * Plugin Name: Gallery From Folder
  * Description: Gallery for all images in folder.
- * Version: 2.0.0
+ * Version: 2.1.0
  * Author: azurecurve
  * Author URI: https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI: https://development.azurecurve.co.uk/classicpress-plugins/azrcrv-gallery-from-folder/
@@ -147,7 +147,7 @@ function azrcrv_gff_add_plugin_action_link($links, $file){
 	}
 
 	if ($file == $this_plugin){
-		$settings_link = '<a href="'.admin_url('admin.php?page=azrcrv-gff').'"><img src="'.plugins_url('/pluginmenu/images/Favicon-16x16.png', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'gallery-from-folder').'</a>';
+		$settings_link = '<a href="'.admin_url('admin.php?page=azrcrv-gff').'"><img src="'.plugins_url('/pluginmenu/images/logo.svg', __FILE__).'" style="padding-top: 2px; margin-right: -5px; height: 16px; width: 16px;" alt="azurecurve" />'.esc_html__('Settings' ,'gallery-from-folder').'</a>';
 		array_unshift($links, $settings_link);
 	}
 
@@ -213,7 +213,12 @@ function azrcrv_gff_display_options(){
 	?>
 	<div id="azrcrv-n-general" class="wrap">
 		<fieldset>
-			<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+			<h1>
+				<?php
+					echo '<a href="https://development.azurecurve.co.uk/classicpress-plugins/"><img src="'.plugins_url('/pluginmenu/images/logo.svg', __FILE__).'" style="padding-right: 6px; height: 20px; width: 20px;" alt="azurecurve" /></a>';
+					esc_html_e(get_admin_page_title());
+				?>
+			</h1>
 			<?php if(isset($_GET['settings-updated'])){ ?>
 				<div class="notice notice-success is-dismissible">
 					<p><strong><?php esc_html_e('Settings have been saved.', 'gallery-from-folder'); ?></strong></p>
@@ -228,7 +233,7 @@ function azrcrv_gff_display_options(){
 				<table class="form-table">
 				
 					<tr><td colspan="2">
-						<?php _e('<p>Gallery From Folder is a simple plugin which will read a folder and display a gallery of all thumbnails with links to the original full-size image.</p>
+						<?php esc_html_e('<p>Gallery From Folder is a simple plugin which will read a folder and display a gallery of all thumbnails with links to the original full-size image.</p>
 						
 						<p>The <strong>[gallery-from-folder]</strong> shortcode can be provided with either an <strong>slug</strong> parameter referencing a specific folder name, or a <strong>post_id</strong> for a ClassicPress post.</p>
 						
