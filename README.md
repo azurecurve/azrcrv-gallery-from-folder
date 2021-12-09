@@ -1,8 +1,6 @@
 # [Gallery From Folder](https://development.azurecurve.co.uk/classicpress-plugins/gallery-from-folder/)
 ![Plugin Banner](/assets/pluginimages/banner-1544x500.png)
 
-== Description ==
-
 # Description
 
 Gallery From Folder is a simple plugin which will read a folder and display a gallery of all thumbnails with links to the original full-size image.
