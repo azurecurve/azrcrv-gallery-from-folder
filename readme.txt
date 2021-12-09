@@ -1,12 +1,12 @@
 === Gallery From Folder ===
 
 Description:	Loads a gallery of thumbnails from a folder; full-size images are linked from thumbnail.
-Version:		2.1.0
+Version:		2.1.1
 Tags:			gallery,images
 Author:			azurecurve
 Author URI:		https://development.azurecurve.co.uk/
 Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/gallery-from-folder/
-Download link:	https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/download/v2.1.0/azrcrv-gallery-from-folder.zip
+Download link:	https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/download/v2.1.1/azrcrv-gallery-from-folder.zip
 Donate link:	https://development.azurecurve.co.uk/support-development/
 Requires PHP:	5.6
 Requires:		1.0.0
@@ -32,7 +32,7 @@ An example of the shortcode is [gallery-from-folder alt_id="sample-gallery"]
 
 # Installation Instructions
 
- * Download the plugin from [GitHub](https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/latest/).
+ * Download the latest release of the plugin from [GitHub](https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/latest/).
  * Upload the entire zip file using the Plugins upload function in your ClassicPress admin panel.
  * Activate the plugin.
  * Configure relevant settings via the settings page in the admin control panel (azurecurve menu).
@@ -42,7 +42,7 @@ An example of the shortcode is [gallery-from-folder alt_id="sample-gallery"]
 # Frequently Asked Questions
 
 ### Can I translate this plugin?
-Yes, the .pot fie is in the plugins languages folder and can also be downloaded from the plugin page on https://development.azurecurve.co.uk; if you do translate this plugin, please sent the .po and .mo files to translations@azurecurve.co.uk for inclusion in the next version (full credit will be given).
+Yes, the .pot file is in the plugins languages folder; if you do translate this plugin, please sent the .po and .mo files to translations@azurecurve.co.uk for inclusion in the next version (full credit will be given).
 
 ### Is this plugin compatible with both WordPress and ClassicPress?
 This plugin is developed for ClassicPress, but will likely work on WordPress.
@@ -50,6 +50,10 @@ This plugin is developed for ClassicPress, but will likely work on WordPress.
 == Changelog ==
 
 # Changelog
+
+### [Version 2.1.1](https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/tag/v2.1.1)
+ * Update azurecurve menu.
+ * Update readme files.
 
 ### [Version 2.1.0](https://github.com/azurecurve/azrcrv-gallery-from-folder/releases/tag/v2.1.0)
  * Add uninstall.
@@ -70,12 +74,16 @@ This plugin is developed for ClassicPress, but will likely work on WordPress.
 
 # About azurecurve
 
-**azurecurve** was one of the first plugin developers to start developing for Classicpress; all plugins are available from [azurecurve Development](https://development.azurecurve.co.uk/) and are integrated with the [Update Manager plugin](https://codepotent.com/classicpress/plugins/update-manager/) by [CodePotent](https://codepotent.com/) for fully integrated, no hassle, updates.
+**azurecurve** was one of the first plugin developers to start developing for Classicpress; all plugins are available from [azurecurve Development](https://development.azurecurve.co.uk/) and are integrated with the [Update Manager plugin](https://directory.classicpress.net/plugins/update-manager) for fully integrated, no hassle, updates.
 
-Some of the top plugins available from **azurecurve** are:
-* [Add Twitter Cards](https://development.azurecurve.co.uk/classicpress-plugins/add-twitter-cards/)
-* [Breadcrumbs](https://development.azurecurve.co.uk/classicpress-plugins/breadcrumbs/)
-* [Series Index](https://development.azurecurve.co.uk/classicpress-plugins/series-index/)
-* [To Twitter](https://development.azurecurve.co.uk/classicpress-plugins/to-twitter/)
-* [Theme Switcher](https://development.azurecurve.co.uk/classicpress-plugins/theme-switcher/)
-* [Toggle Show/Hide](https://development.azurecurve.co.uk/classicpress-plugins/toggle-showhide/)
+Some of the other plugins available from **azurecurve** are:
+ * Contact Forms - [details](https://development.azurecurve.co.uk/classicpress-plugins/contact-forms/) / [download](https://github.com/azurecurve/azrcrv-contact-forms/releases/latest/)
+ * Loop Injection - [details](https://development.azurecurve.co.uk/classicpress-plugins/loop-injection/) / [download](https://github.com/azurecurve/azrcrv-loop-injection/releases/latest/)
+ * Post Archive - [details](https://development.azurecurve.co.uk/classicpress-plugins/post-archive/) / [download](https://github.com/azurecurve/azrcrv-post-archive/releases/latest/)
+ * RSS Suffix - [details](https://development.azurecurve.co.uk/classicpress-plugins/rss-suffix/) / [download](https://github.com/azurecurve/azrcrv-rss-suffix/releases/latest/)
+ * SMTP - [details](https://development.azurecurve.co.uk/classicpress-plugins/smtp/) / [download](https://github.com/azurecurve/azrcrv-smtp/releases/latest/)
+ * Taxonomy Order - [details](https://development.azurecurve.co.uk/classicpress-plugins/taxonomy-order/) / [download](https://github.com/azurecurve/azrcrv-taxonomy-order/releases/latest/)
+ * Timelines - [details](https://development.azurecurve.co.uk/classicpress-plugins/timelines/) / [download](https://github.com/azurecurve/azrcrv-timelines/releases/latest/)
+ * URL Shortener - [details](https://development.azurecurve.co.uk/classicpress-plugins/url-shortener/) / [download](https://github.com/azurecurve/azrcrv-url-shortener/releases/latest/)
+ * Username Protection - [details](https://development.azurecurve.co.uk/classicpress-plugins/username-protection/) / [download](https://github.com/azurecurve/azrcrv-username-protection/releases/latest/)
+ * Widget Announcements - [details](https://development.azurecurve.co.uk/classicpress-plugins/widget-announcements/) / [download](https://github.com/azurecurve/azrcrv-widget-announcements/releases/latest/)
