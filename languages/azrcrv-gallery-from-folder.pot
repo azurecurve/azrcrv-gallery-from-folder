@@ -1,0 +1,95 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Gallery From Folder\n"
+"POT-Creation-Date: 2021-12-27 17:57+0000\n"
+"PO-Revision-Date: 2019-02-24 18:47+0000\n"
+"Last-Translator: \n"
+"Language-Team: translate@azurecurve.co.uk\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: azrcrv-gallery-from-folder.php:150
+msgid "Settings"
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:167
+msgid "Gallery From Folder Settings"
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:168
+msgid "Gallery From Folder"
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:208
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:224
+msgid "Settings have been saved."
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:236
+msgid ""
+"<p>Gallery From Folder is a simple plugin which will read a folder and display a gallery of all thumbnails with links to the original full-size image.</p>\n"
+"\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t<p>The <strong>[gallery-from-folder]</strong> shortcode can be provided with either an <strong>slug</strong> parameter referencing a specific folder name, or a <strong>post_id</strong> for a ClassicPress post.</p>\n"
+"\t\t\t\t\t\t\n"
+"\t\t\t\t\t\t<p>Example of the shortcode are:\n"
+"\t\t\t\t\t\t\t<ul>\n"
+"\t\t\t\t\t\t\t\t<li><strong>[gallery-from-folder post_id=\"1013\"]</strong> would, using the default options, produce a URL of <strong>https://your-site.com/wp-content/1013/</strong> and a thumbnail path of <strong>https://your-site.com/wp-content/1013/thumbnails</strong></li>\n"
+"\t\t\t\t\t\t\t\t<li><strong>[gallery-from-folder slug=\"sample-gallery\"] would, using the default options, produce a URL of <strong>https://your-site.com/wp-content/sample-gallery/</strong> and a thumbnail path of <strong>https://your-site.com/wp-content/sample-gallery/thumbnails</strong></li>\n"
+"\t\t\t\t\t\t\t</ul>\n"
+"\t\t\t\t\t\t</p>"
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:249
+msgid "Base Gallery URL"
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:251
+msgid "Specify the base gallery url which contains the image galleries (such as https://your-site.com/wp-content/galleries/)."
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:254
+msgid "Base Gallery Folder"
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:256
+msgid "Specify the base gallery folder which contains the image galleries (such as https://your-site.com/wp-content/galleries/)."
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:259
+msgid "Thumbnail Folder"
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:261
+msgid "Specify the name of the folder within each gallery folder which contains the thumbnails."
+msgstr ""
+
+#: azrcrv-gallery-from-folder.php:281
+msgid "You do not have permissions to perform this action"
+msgstr ""
+
+#: libraries/updateclient/UpdateClient.class.php:191
+msgid "Compatible up to:"
+msgstr ""
+
+#: libraries/updateclient/UpdateClient.class.php:192
+msgid "Reviews"
+msgstr ""
+
+#: libraries/updateclient/UpdateClient.class.php:193
+msgid "Read all reviews"
+msgstr ""
+
+#: libraries/updateclient/UpdateClient.class.php:383
+msgid "View details"
+msgstr ""
