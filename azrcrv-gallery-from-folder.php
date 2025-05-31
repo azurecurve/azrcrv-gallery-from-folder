@@ -3,8 +3,9 @@
  * ------------------------------------------------------------------------------
  * Plugin Name:		Gallery From Folder
  * Description:		Gallery for all images in folder.
- * Version:			2.1.4
+ * Version:			2.1.5
  * Requires CP:		1.0
+ * Requires PHP:	7.4
  * Author:			azurecurve
  * Author URI:		https://development.azurecurve.co.uk/classicpress-plugins/
  * Plugin URI:		https://development.azurecurve.co.uk/classicpress-plugins/azrcrv-gallery-from-folder/
